@@ -1,0 +1,21 @@
+@import "../../colors.scss";
+
+.suggested-city-list {
+  max-height: 200px;
+  overflow: auto;
+  border: 1px solid $color-light;
+  border-radius: 2px;
+  position: relative;
+  z-index: 2;
+  background-color: $color-bg;
+  box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, 0.2);
+}
+
+.suggested-city-list-item {
+  cursor: pointer;
+  padding: 8px;
+  background-color: $color-bg;
+  &:hover {
+    background-color: $color-light;
+  }
+}
