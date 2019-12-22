@@ -1,6 +1,6 @@
 import { SHOW_SUGGESTION_LIST } from "../actions/actionTypes";
 
-const isSuggestionListDisplay = (state = false, action) => {
+const isSuggestionListActive = (state = false, action) => {
   switch (action.type) {
     case SHOW_SUGGESTION_LIST: {
       return action.payload.flag;
@@ -11,4 +11,4 @@ const isSuggestionListDisplay = (state = false, action) => {
   }
 };
 
-export default isSuggestionListDisplay;
+export default isSuggestionListActive;

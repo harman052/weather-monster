@@ -1,0 +1,19 @@
+$card-width: 200px;
+$card-spacing: 40px;
+$cards-per-row: 3;
+$card-border-width: 2px;
+$card-padding: 10px;
+
+@function cardSectionWidth() {
+  /* 
+  width covered by all cards in a row + 
+  space between cards in row +
+  width of left and right borders of all cards in a row +
+  left and right padding of all cards in a row
+  */
+  $totalWidth: ($cards-per-row * $card-width) +
+    (($cards-per-row - 1) * $card-spacing) +
+    ($cards-per-row * 2 * $card-border-width) +
+    ($cards-per-row * 2 * $card-padding);
+  @return $totalWidth;
+}

@@ -1,0 +1,36 @@
+@import "../../colors.scss";
+@import "../../base.scss";
+
+.card {
+  border: $card-border-width solid $color-dark;
+  border-radius: 4px;
+  padding: $card-padding;
+  width: $card-width;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin-right: $card-spacing;
+  margin-bottom: $card-spacing;
+  &:hover {
+    box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, 0.2);
+  }
+}
+
+.card:nth-child(#{$cards-per-row}n) {
+  margin-right: 0;
+}
+
+.min-temp-label,
+.max-temp-label {
+  margin-right: 10px;
+}
+
+/* media queries */
+
+@media screen and (max-width: 999px) {
+  .card {
+    margin-right: 0;
+  }
+}

@@ -1,13 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
+import { notifications } from "../../config";
 import "./styles.scss";
 
-const SuggestedCityList = ({
-  isSuggestionListDisplay,
+export const SuggestedCityList = ({
+  isSuggestionListActive,
   filteredList,
   addCity
 }) => {
-  if (!isSuggestionListDisplay) {
+  if (!isSuggestionListActive) {
     return null;
   }
   if (filteredList.length > 0) {
@@ -25,12 +26,12 @@ const SuggestedCityList = ({
       </section>
     );
   } else {
-    return <p>No matches found.</p>;
+    return <p>{notifications.noMatchesFound}</p>;
   }
 };
 
-const mapStateToProps = ({ isSuggestionListDisplay }) => ({
-  isSuggestionListDisplay
+const mapStateToProps = ({ isSuggestionListActive }) => ({
+  isSuggestionListActive
 });
 
 export default connect(mapStateToProps, null)(SuggestedCityList);
