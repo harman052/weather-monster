@@ -12,7 +12,7 @@ const noCitiesAdded = (
   </div>
 );
 
-const DisplayCities = ({ cities, removeCity, isFetchingData }) => {
+export const DisplayCities = ({ cities, removeCity, isFetchingData }) => {
   return (
     <section className="active-city-card-wrapper">
       <section className="active-city-list">

@@ -1,344 +1,245 @@
 const cityList = [
   {
-    id: 707860,
-    name: "Hurzuf",
-    country: "UA",
+    id: 2643743,
+    name: "London",
+    country: "GB",
     coord: {
-      lon: 34.283333,
-      lat: 44.549999
+      lon: -0.12574,
+      lat: 51.50853
     }
   },
   {
-    id: 519188,
-    name: "Novinki",
-    country: "RU",
+    id: 2655603,
+    name: "Birmingham",
+    country: "GB",
     coord: {
-      lon: 37.666668,
-      lat: 55.683334
+      lon: -1.89983,
+      lat: 52.481419
     }
   },
   {
-    id: 1283378,
-    name: "Gorkhā",
-    country: "NP",
+    id: 5128638,
+    name: "New York",
+    country: "US",
     coord: {
-      lon: 84.633331,
-      lat: 28
+      lon: -75.499901,
+      lat: 43.000351
     }
   },
   {
-    id: 1270260,
-    name: "State of Haryāna",
+    id: 1278710,
+    name: "Amritsar",
     country: "IN",
     coord: {
-      lon: 76,
-      lat: 29
+      lon: 74.865562,
+      lat: 31.63306
     }
   },
   {
-    id: 708546,
-    name: "Holubynka",
-    country: "UA",
+    id: 2950158,
+    name: "Berlin",
+    country: "DE",
     coord: {
-      lon: 33.900002,
-      lat: 44.599998
+      lon: 10.45,
+      lat: 54.033329
     }
   },
   {
-    id: 1283710,
-    name: "Bāgmatī Zone",
-    country: "NP",
-    coord: {
-      lon: 85.416664,
-      lat: 28
-    }
-  },
-  {
-    id: 529334,
-    name: "Mar’ina Roshcha",
-    country: "RU",
-    coord: {
-      lon: 37.611111,
-      lat: 55.796391
-    }
-  },
-  {
-    id: 1269750,
-    name: "Republic of India",
+    id: 1261481,
+    name: "New Delhi",
     country: "IN",
     coord: {
-      lon: 77,
-      lat: 20
+      lon: 77.23114,
+      lat: 28.61282
     }
   },
   {
-    id: 1283240,
-    name: "Kathmandu",
-    country: "NP",
+    id: 292223,
+    name: "Dubai",
+    country: "AE",
     coord: {
-      lon: 85.316666,
-      lat: 27.716667
+      lon: 55.304722,
+      lat: 25.258169
     }
   },
   {
-    id: 703363,
-    name: "Laspi",
-    country: "UA",
+    id: 184745,
+    name: "Nairobi",
+    country: "KE",
     coord: {
-      lon: 33.733334,
-      lat: 44.416668
+      lon: 36.816669,
+      lat: -1.28333
     }
   },
   {
-    id: 3632308,
-    name: "Merida",
-    country: "VE",
+    id: 1850147,
+    name: "Tokyo",
+    country: "JP",
     coord: {
-      lon: -71.144997,
-      lat: 8.598333
+      lon: 139.691711,
+      lat: 35.689499
     }
   },
   {
-    id: 473537,
-    name: "Vinogradovo",
+    id: 524901,
+    name: "Moscow",
     country: "RU",
     coord: {
-      lon: 38.545555,
-      lat: 55.423332
+      lon: 37.615555,
+      lat: 55.75222
     }
   },
   {
-    id: 384848,
-    name: "Qarah Gawl al ‘Ulyā",
+    id: 2147714,
+    name: "Sydney",
+    country: "AU",
+    coord: {
+      lon: 151.207321,
+      lat: -33.867851
+    }
+  },
+  {
+    id: 2192362,
+    name: "Christchurch",
+    country: "NZ",
+    coord: {
+      lon: 172.633331,
+      lat: -43.533329
+    }
+  },
+  {
+    id: 2179537,
+    name: "Wellington",
+    country: "NZ",
+    coord: {
+      lon: 174.775574,
+      lat: -41.28664
+    }
+  },
+  {
+    id: 2193733,
+    name: "Auckland",
+    country: "NZ",
+    coord: {
+      lon: 174.766663,
+      lat: -36.866669
+    }
+  },
+  {
+    id: 292672,
+    name: "Sharjah",
+    country: "AE",
+    coord: {
+      lon: 55.403301,
+      lat: 25.357309
+    }
+  },
+  {
+    id: 6691135,
+    name: "Al Ghuwair",
+    country: "AE",
+    coord: {
+      lon: 55.391911,
+      lat: 25.35985
+    }
+  },
+  {
+    id: 2911298,
+    name: "Hamburg",
+    country: "DE",
+    coord: {
+      lon: 10,
+      lat: 53.549999
+    }
+  },
+  {
+    id: 5391959,
+    name: "San Francisco",
+    country: "US",
+    coord: {
+      lon: -122.419418,
+      lat: 37.774929
+    }
+  },
+  {
+    id: 5392171,
+    name: "San Jose",
+    country: "US",
+    coord: {
+      lon: -121.894958,
+      lat: 37.33939
+    }
+  },
+  {
+    id: 5392281,
+    name: "San Lorenzo",
+    country: "US",
+    coord: {
+      lon: -122.124413,
+      lat: 37.681042
+    }
+  },
+  {
+    id: 5392368,
+    name: "San Marcos",
+    country: "US",
+    coord: {
+      lon: -117.166138,
+      lat: 33.143372
+    }
+  },
+  {
+    id: 5907364,
+    name: "Brampton",
+    country: "CA",
+    coord: {
+      lon: -79.766327,
+      lat: 43.683411
+    }
+  },
+  {
+    id: 98182,
+    name: "Baghdad",
     country: "IQ",
     coord: {
-      lon: 45.6325,
-      lat: 35.353889
+      lon: 44.400879,
+      lat: 33.34058
     }
   },
   {
-    id: 569143,
-    name: "Cherkizovo",
-    country: "RU",
+    id: 1007311,
+    name: "Durban",
+    country: "ZA",
     coord: {
-      lon: 37.728889,
-      lat: 55.800835
+      lon: 31.0292,
+      lat: -29.857901
     }
   },
   {
-    id: 713514,
-    name: "Alupka",
-    country: "UA",
+    id: 3369157,
+    name: "Cape Town",
+    country: "ZA",
     coord: {
-      lon: 34.049999,
-      lat: 44.416668
+      lon: 18.42322,
+      lat: -33.925838
     }
   },
   {
-    id: 2878044,
-    name: "Lichtenrade",
-    country: "DE",
+    id: 186301,
+    name: "Mombasa",
+    country: "KE",
     coord: {
-      lon: 13.40637,
-      lat: 52.398441
+      lon: 39.663589,
+      lat: -4.05466
     }
   },
   {
-    id: 464176,
-    name: "Zavety Il’icha",
-    country: "RU",
+    id: 108410,
+    name: "Riyadh",
+    country: "SA",
     coord: {
-      lon: 37.849998,
-      lat: 56.049999
-    }
-  },
-  {
-    id: 295582,
-    name: "‘Azriqam",
-    country: "IL",
-    coord: {
-      lon: 34.700001,
-      lat: 31.75
-    }
-  },
-  {
-    id: 1271231,
-    name: "Ghūra",
-    country: "IN",
-    coord: {
-      lon: 79.883331,
-      lat: 24.766666
-    }
-  },
-  {
-    id: 690856,
-    name: "Tyuzler",
-    country: "UA",
-    coord: {
-      lon: 34.083332,
-      lat: 44.466667
-    }
-  },
-  {
-    id: 464737,
-    name: "Zaponor’ye",
-    country: "RU",
-    coord: {
-      lon: 38.861942,
-      lat: 55.639999
-    }
-  },
-  {
-    id: 707716,
-    name: "Il’ichëvka",
-    country: "UA",
-    coord: {
-      lon: 34.383331,
-      lat: 44.666668
-    }
-  },
-  {
-    id: 697959,
-    name: "Partyzans’ke",
-    country: "UA",
-    coord: {
-      lon: 34.083332,
-      lat: 44.833332
-    }
-  },
-  {
-    id: 803611,
-    name: "Yurevichi",
-    country: "RU",
-    coord: {
-      lon: 39.934444,
-      lat: 43.600555
-    }
-  },
-  {
-    id: 614371,
-    name: "Gumist’a",
-    country: "GE",
-    coord: {
-      lon: 40.973888,
-      lat: 43.026943
-    }
-  },
-  {
-    id: 874560,
-    name: "Ptitsefabrika",
-    country: "GE",
-    coord: {
-      lon: 40.290558,
-      lat: 43.183613
-    }
-  },
-  {
-    id: 874652,
-    name: "Orekhovo",
-    country: "GE",
-    coord: {
-      lon: 40.146111,
-      lat: 43.351391
-    }
-  },
-  {
-    id: 2347078,
-    name: "Birim",
-    country: "NG",
-    coord: {
-      lon: 9.997027,
-      lat: 10.062094
-    }
-  },
-  {
-    id: 2864071,
-    name: "Neustadt",
-    country: "DE",
-    coord: {
-      lon: 12.56667,
-      lat: 52.400002
-    }
-  },
-  {
-    id: 1704628,
-    name: "Mabiga",
-    country: "PH",
-    coord: {
-      lon: 120.585098,
-      lat: 15.1917
-    }
-  },
-  {
-    id: 3076348,
-    name: "Dubí",
-    country: "CZ",
-    coord: {
-      lon: 15.41857,
-      lat: 49.533878
-    }
-  },
-  {
-    id: 6811761,
-    name: "Wŏnsŏngil-tong",
-    country: "KR",
-    coord: {
-      lon: 127.161346,
-      lat: 36.809792
-    }
-  },
-  {
-    id: 696416,
-    name: "Potok",
-    country: "UA",
-    coord: {
-      lon: 25.03334,
-      lat: 49.512241
-    }
-  },
-  {
-    id: 6845986,
-    name: "Mironovka",
-    country: "RU",
-    coord: {
-      lon: 44.214001,
-      lat: 54.499802
-    }
-  },
-  {
-    id: 670942,
-    name: "Petroman",
-    country: "RO",
-    coord: {
-      lon: 21.116671,
-      lat: 45.533329
-    }
-  },
-  {
-    id: 2620274,
-    name: "Hjallese",
-    country: "DK",
-    coord: {
-      lon: 10.38499,
-      lat: 55.348289
-    }
-  },
-  {
-    id: 2624596,
-    name: "Årslev",
-    country: "DK",
-    coord: {
-      lon: 9.3485,
-      lat: 55.026772
-    }
-  },
-  {
-    id: 2615199,
-    name: "Pederstrup",
-    country: "DK",
-    coord: {
-      lon: 10.48753,
-      lat: 55.285309
+      lon: 46.721851,
+      lat: 24.687731
     }
   }
 ];
