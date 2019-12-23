@@ -1,9 +1,10 @@
 import { SHOW_SUGGESTION_LIST } from "../actions/actionTypes";
 
 const isSuggestionListActive = (state = false, action) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case SHOW_SUGGESTION_LIST: {
-      return action.payload.flag;
+      return payload.flag;
     }
     default: {
       return state;

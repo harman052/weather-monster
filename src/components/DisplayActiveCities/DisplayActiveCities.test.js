@@ -29,31 +29,33 @@ const props = {
   removeCity: jest.fn()
 };
 
-it("should render DisplayActiveCities", () => {
-  const wrapper = shallow(<DisplayActiveCities {...props} />);
-  expect(wrapper.exists()).toBe(true);
-});
+describe("DisplayActiveCities", () => {
+  it("should render DisplayActiveCities", () => {
+    const wrapper = shallow(<DisplayActiveCities {...props} />);
+    expect(wrapper.exists()).toBe(true);
+  });
 
-it("should render section with wrapper class", () => {
-  const wrapper = shallow(<DisplayActiveCities {...props} />);
-  expect(wrapper.find("section.active-city-card-wrapper").length).toBe(1);
-});
+  it("should render section with wrapper class", () => {
+    const wrapper = shallow(<DisplayActiveCities {...props} />);
+    expect(wrapper.find("section.active-city-card-wrapper").length).toBe(1);
+  });
 
-it("should render section with inner wrapper class", () => {
-  const wrapper = shallow(<DisplayActiveCities {...props} />);
-  expect(wrapper.find("section.active-city-list").length).toBe(1);
-});
+  it("should render section with inner wrapper class", () => {
+    const wrapper = shallow(<DisplayActiveCities {...props} />);
+    expect(wrapper.find("section.active-city-list").length).toBe(1);
+  });
 
-it("should render card component(s) when activeCities prop has elements", () => {
-  const wrapper = shallow(<DisplayActiveCities {...props} />);
-  expect(wrapper.find(Card).length).toBe(props.activeCities.length);
-});
+  it("should render card component(s) when activeCities prop has elements", () => {
+    const wrapper = shallow(<DisplayActiveCities {...props} />);
+    expect(wrapper.find(Card).length).toBe(props.activeCities.length);
+  });
 
-it("should not render card component(s) when activeCities prop is empty", () => {
-  const localProps = {
-    ...props,
-    activeCities: []
-  };
-  const wrapper = shallow(<DisplayActiveCities {...localProps} />);
-  expect(wrapper.find(Card).length).toBe(0);
+  it("should not render card component(s) when activeCities prop is empty", () => {
+    const localProps = {
+      ...props,
+      activeCities: []
+    };
+    const wrapper = shallow(<DisplayActiveCities {...localProps} />);
+    expect(wrapper.find(Card).length).toBe(0);
+  });
 });

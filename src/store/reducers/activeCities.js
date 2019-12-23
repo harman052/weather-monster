@@ -1,12 +1,13 @@
 import { ADD_CITY, REMOVE_CITY } from "../actions/actionTypes";
 
 const activeCities = (state = [], action) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case ADD_CITY: {
-      return [...state, action.payload.cityDetails];
+      return [...state, payload.cityDetails];
     }
     case REMOVE_CITY: {
-      return state.filter(city => city.id !== action.payload.cityId);
+      return state.filter(city => city.id !== payload.cityId);
     }
     default: {
       return state;

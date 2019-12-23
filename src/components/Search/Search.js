@@ -7,6 +7,7 @@ import {
   requestInProgress,
   requestFailure
 } from "../../store/actions";
+import { cityActive } from "../../helpers";
 import cityList from "../../cityList";
 import SuggestedCityList from "../SuggestedCityList";
 import getWeatherDetails from "../../endpoint";
@@ -38,13 +39,14 @@ export class Search extends Component {
     showSuggestionList(true);
   };
 
-  onClick = event => {
+  openDropdown = event => {
     event.stopPropagation();
     this.props.showSuggestionList(true);
   };
 
   requestWeatherDetails = cityId => {
     const { addCity, requestInProgress, requestFailure } = this.props;
+    requestInProgress(true);
     const url = getWeatherEndpoint(cityId);
     getWeatherDetails(url).then(response => {
       if (response.statusCode === 500) {
@@ -58,19 +60,18 @@ export class Search extends Component {
   };
 
   addNewCity = cityDetails => {
-    const { activeCities, showSuggestionList, requestInProgress } = this.props;
+    const { activeCities, showSuggestionList } = this.props;
     showSuggestionList(false);
-    if (activeCities.findIndex(city => city.id === cityDetails.id) > -1) {
+    if (cityActive(activeCities, cityDetails.id)) {
       return;
     }
-    this.setState(this.initialState);
-    requestInProgress(true);
     this.requestWeatherDetails(cityDetails.id);
+    this.setState(this.initialState);
   };
 
   render() {
     const { userInput, filteredList } = this.state;
-    const { isSuggestionListActive, requestStatus } = this.props;
+    const { isSuggestionListActive, requestStatus, activeCities } = this.props;
     return (
       <section>
         <input
@@ -80,12 +81,14 @@ export class Search extends Component {
           className="city-input-field"
           placeholder={searchPlaceholderText}
           onChange={this.onChange}
-          onClick={event => this.onClick(event)}
+          onClick={event => this.openDropdown(event)}
+          onFocus={event => this.openDropdown(event)}
         />
         <SuggestedCityList
           filteredList={filteredList}
           addCity={this.addNewCity}
           isOpen={isSuggestionListActive}
+          activeCities={activeCities}
         ></SuggestedCityList>
         <div className="loading-data-indicator">
           {requestStatus.inProgress ? notifications.loadingText : ""}

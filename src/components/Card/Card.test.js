@@ -14,38 +14,40 @@ const props = {
   removeCity: jest.fn()
 };
 
-it("should render App", () => {
-  const wrapper = shallow(<Card {...props} />);
-  expect(wrapper.exists()).toBe(true);
-});
+describe("Card", () => {
+  it("should render App", () => {
+    const wrapper = shallow(<Card {...props} />);
+    expect(wrapper.exists()).toBe(true);
+  });
 
-it("should render 1 strong element", () => {
-  const wrapper = shallow(<Card {...props} />);
-  expect(wrapper.find("strong").length).toBe(1);
-});
+  it("should render 1 strong element", () => {
+    const wrapper = shallow(<Card {...props} />);
+    expect(wrapper.find("strong").length).toBe(1);
+  });
 
-it("should render correct contents of strong tag", () => {
-  const wrapper = shallow(<Card {...props} />);
-  const cardTitle = wrapper.find("strong").text();
-  expect(cardTitle).toEqual(props.city.name);
-});
+  it("should render correct contents of strong tag", () => {
+    const wrapper = shallow(<Card {...props} />);
+    const cardTitle = wrapper.find("strong").text();
+    expect(cardTitle).toEqual(props.city.name);
+  });
 
-it("should render 2 span elements", () => {
-  const wrapper = shallow(<Card {...props} />);
-  expect(wrapper.find("span").length).toBe(2);
-});
+  it("should render 2 span elements", () => {
+    const wrapper = shallow(<Card {...props} />);
+    expect(wrapper.find("span").length).toBe(2);
+  });
 
-it("should render correct contents of span elements", () => {
-  const wrapper = shallow(<Card {...props} />);
-  const min = wrapper.find(".min-temp-label").text();
-  const max = wrapper.find(".max-temp-label").text();
-  expect(min).toEqual("Min");
-  expect(max).toEqual("Max");
-});
+  it("should render correct contents of span elements", () => {
+    const wrapper = shallow(<Card {...props} />);
+    const min = wrapper.find(".min-temp-label").text();
+    const max = wrapper.find(".max-temp-label").text();
+    expect(min).toEqual("Min");
+    expect(max).toEqual("Max");
+  });
 
-it("should call removeCity when card is clicked", () => {
-  const wrapper = shallow(<Card {...props} />);
-  wrapper.find("article").simulate("click");
-  expect(props.removeCity).toHaveBeenCalledWith(props.city.id);
-  expect(props.removeCity).toHaveBeenCalledTimes(1);
+  it("should call removeCity when card is clicked", () => {
+    const wrapper = shallow(<Card {...props} />);
+    wrapper.find("article").simulate("click");
+    expect(props.removeCity).toHaveBeenCalledWith(props.city.id);
+    expect(props.removeCity).toHaveBeenCalledTimes(1);
+  });
 });
