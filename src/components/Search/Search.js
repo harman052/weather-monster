@@ -43,21 +43,9 @@ export class Search extends Component {
     this.props.showSuggestionList(true);
   };
 
-  addNewCity = cityDetails => {
-    const {
-      activeCities,
-      showSuggestionList,
-      addCity,
-      requestInProgress,
-      requestFailure
-    } = this.props;
-    showSuggestionList(false);
-    if (activeCities.findIndex(city => city.id === cityDetails.id) > -1) {
-      return;
-    }
-    this.setState(this.initialState);
-    requestInProgress(true);
-    const url = getWeatherEndpoint(cityDetails.id);
+  requestWeatherDetails = cityId => {
+    const { addCity, requestInProgress, requestFailure } = this.props;
+    const url = getWeatherEndpoint(cityId);
     getWeatherDetails(url).then(response => {
       if (response.statusCode === 500) {
         requestInProgress(false);
@@ -67,6 +55,17 @@ export class Search extends Component {
       addCity(response.data);
       requestInProgress(false);
     });
+  };
+
+  addNewCity = cityDetails => {
+    const { activeCities, showSuggestionList, requestInProgress } = this.props;
+    showSuggestionList(false);
+    if (activeCities.findIndex(city => city.id === cityDetails.id) > -1) {
+      return;
+    }
+    this.setState(this.initialState);
+    requestInProgress(true);
+    this.requestWeatherDetails(cityDetails.id);
   };
 
   render() {
