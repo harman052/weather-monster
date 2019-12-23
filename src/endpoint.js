@@ -16,10 +16,14 @@ const getWeatherDetails = async url => {
     result.statusCode = 200;
     return result;
   } catch (error) {
-    console.error("An error occurred: ", error);
     result.statusCode = 500;
     return result;
   }
+  // } catch (error) {
+  //   console.error("An error occurred: ", error);
+  //   result.statusCode = 500;
+  //   return result;
+  // }
 };
 
 export default getWeatherDetails;

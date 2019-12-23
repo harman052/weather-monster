@@ -5,7 +5,7 @@ import { Search } from "./Search";
 import cityList from "../../cityList";
 
 const props = {
-  cities: [
+  activeCities: [
     {
       name: "Berlin",
       id: 123,
@@ -24,7 +24,10 @@ const props = {
     }
   ],
   addCity: jest.fn(),
-  showSuggestionList: jest.fn()
+  fetchData: jest.fn(),
+  showSuggestionList: jest.fn(),
+  isFetchingData: false,
+  isSuggestionListActive: false
 };
 
 it("should render Search component", () => {
@@ -61,18 +64,3 @@ it("should render city suggestion list with results matching to user input", () 
     filteredCityNames.every(cityName => cityName.includes(cityNameSubString))
   ).toBe(true);
 });
-
-// fit("should not add new city to list of active cities it is already added", () => {
-//   const wrapper = shallow(<Search {...props} />);
-//   // const instance = wrapper.instance();
-
-//   wrapper.instance().props.addCity({
-//     name: "Frankfurt",
-//     id: 789,
-//     main: {
-//       temp_min: 3,
-//       temp_max: 18
-//     }
-//   });
-//   console.log(wrapper.instance().props.cities.length);
-// });

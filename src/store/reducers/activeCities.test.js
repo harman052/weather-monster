@@ -1,4 +1,4 @@
-import cities from "./cities";
+import activeCities from "./activeCities";
 import * as types from "../actions/actionTypes";
 
 const city1 = {
@@ -11,21 +11,21 @@ const city2 = {
   name: "Munich"
 };
 
-describe("cities reducer", () => {
+describe("activeCities reducer", () => {
   it("should return the initial state", () => {
-    expect(cities(undefined, {})).toEqual([]);
+    expect(activeCities(undefined, {})).toEqual([]);
   });
 
   it("should handle ADD_CITY", () => {
     expect(
-      cities([], {
+      activeCities([], {
         type: types.ADD_CITY,
         payload: { cityDetails: city1 }
       })
     ).toEqual([city1]);
 
     expect(
-      cities([city1], {
+      activeCities([city1], {
         type: types.ADD_CITY,
         payload: { cityDetails: city2 }
       })
@@ -35,7 +35,7 @@ describe("cities reducer", () => {
   it("should handle REMOVE_CITY", () => {
     const cityId = city1.id;
     expect(
-      cities([city1, city2], {
+      activeCities([city1, city2], {
         type: types.REMOVE_CITY,
         payload: { cityId }
       })

@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
-import cities from "./cities";
+import activeCities from "./activeCities";
 import isSuggestionListActive from "./isSuggestionListActive";
 import isFetchingData from "./isFetchingData";
+import isError from "./isError";
 
 export default combineReducers({
-  cities,
+  activeCities,
   isSuggestionListActive,
-  isFetchingData
+  isFetchingData,
+  isError
 });

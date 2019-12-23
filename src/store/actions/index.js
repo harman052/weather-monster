@@ -2,7 +2,8 @@ import {
   ADD_CITY,
   REMOVE_CITY,
   SHOW_SUGGESTION_LIST,
-  FETCH_DATA
+  FETCH_DATA,
+  AN_ERROR_OCCURRED
 } from "./actionTypes";
 
 export const addCity = cityDetails => ({
@@ -28,6 +29,13 @@ export const showSuggestionList = flag => ({
 
 export const fetchData = flag => ({
   type: FETCH_DATA,
+  payload: {
+    flag
+  }
+});
+
+export const anErrorOccurred = flag => ({
+  type: AN_ERROR_OCCURRED,
   payload: {
     flag
   }

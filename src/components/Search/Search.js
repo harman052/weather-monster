@@ -1,14 +1,17 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addCity, showSuggestionList, fetchData } from "../../store/actions";
+import {
+  addCity,
+  showSuggestionList,
+  fetchData,
+  anErrorOccurred
+} from "../../store/actions";
 import cityList from "../../cityList";
 import SuggestedCityList from "../SuggestedCityList";
 import getWheatherDetails from "../../endpoint";
-import {
-  weatherEndpoint,
-  searchPlaceholderText,
-  notifications
-} from "../../config";
+import { searchPlaceholderText, notifications } from "../../config";
+import { weatherEndpoint } from "../../endpointConfig";
 import "./styles.scss";
 
 export class Search extends Component {
@@ -24,7 +27,7 @@ export class Search extends Component {
   onChange = e => {
     const userInput = e.currentTarget.value;
     const filteredList = cityList.filter(item => {
-      return item.name.toLowerCase().indexOf(userInput.toLowerCase()) !== -1;
+      return item.name.toLowerCase().includes(userInput.toLowerCase());
     });
     this.setState({
       userInput: e.currentTarget.value,
@@ -44,9 +47,15 @@ export class Search extends Component {
   };
 
   addNewCity = cityDetails => {
-    const { cities, showSuggestionList, addCity, fetchData } = this.props;
+    const {
+      activeCities,
+      showSuggestionList,
+      addCity,
+      fetchData,
+      anErrorOccurred
+    } = this.props;
     showSuggestionList(false);
-    if (cities.findIndex(city => city.id === cityDetails.id) > -1) {
+    if (activeCities.findIndex(city => city.id === cityDetails.id) > -1) {
       return;
     }
     showSuggestionList(false);
@@ -54,6 +63,11 @@ export class Search extends Component {
     fetchData(true);
     const url = weatherEndpoint(cityDetails.id);
     getWheatherDetails(url).then(response => {
+      if (response.statusCode === 500) {
+        fetchData(false);
+        anErrorOccurred(true);
+        return;
+      }
       addCity(response.data);
       fetchData(false);
     });
@@ -61,9 +75,11 @@ export class Search extends Component {
 
   render() {
     const { userInput, filteredList } = this.state;
+    const { isSuggestionListActive } = this.props;
     return (
       <section>
         <input
+          title={searchPlaceholderText}
           type="search"
           value={userInput}
           className="city-input-field"
@@ -74,6 +90,7 @@ export class Search extends Component {
         <SuggestedCityList
           filteredList={filteredList}
           addCity={this.addNewCity}
+          isSuggestionListActive={isSuggestionListActive}
         ></SuggestedCityList>
         <div className="loading-data-indicator">
           {this.props.isFetchingData ? notifications.loadingText : ""}
@@ -83,10 +100,32 @@ export class Search extends Component {
   }
 }
 
-const mapStateToProps = ({ cities, isFetchingData }) => ({
-  cities,
-  isFetchingData
+Search.propTypes = {
+  isError: PropTypes.bool.isRequired,
+  addCity: PropTypes.func.isRequired,
+  fetchData: PropTypes.func.isRequired,
+  isFetchingData: PropTypes.bool.isRequired,
+  anErrorOccurred: PropTypes.func.isRequired,
+  showSuggestionList: PropTypes.func.isRequired,
+  isSuggestionListActive: PropTypes.bool.isRequired
+};
+
+const mapStateToProps = ({
+  isError,
+  activeCities,
+  isFetchingData,
+  isSuggestionListActive
+}) => ({
+  isError,
+  activeCities,
+  isFetchingData,
+  isSuggestionListActive
 });
-const mapDispatchToProps = { addCity, showSuggestionList, fetchData };
+const mapDispatchToProps = {
+  addCity,
+  fetchData,
+  anErrorOccurred,
+  showSuggestionList
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

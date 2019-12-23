@@ -1,6 +1,6 @@
 import { ADD_CITY, REMOVE_CITY } from "../actions/actionTypes";
 
-const cities = (state = [], action) => {
+const activeCities = (state = [], action) => {
   switch (action.type) {
     case ADD_CITY: {
       return [...state, action.payload.cityDetails];
@@ -14,4 +14,4 @@ const cities = (state = [], action) => {
   }
 };
 
-export default cities;
+export default activeCities;

@@ -1,12 +1,12 @@
 import React from "react";
-import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { notifications } from "../../config";
 import "./styles.scss";
 
 export const SuggestedCityList = ({
-  isSuggestionListActive,
+  addCity,
   filteredList,
-  addCity
+  isSuggestionListActive
 }) => {
   if (!isSuggestionListActive) {
     return null;
@@ -30,8 +30,10 @@ export const SuggestedCityList = ({
   }
 };
 
-const mapStateToProps = ({ isSuggestionListActive }) => ({
-  isSuggestionListActive
-});
+SuggestedCityList.propTypes = {
+  addCity: PropTypes.func.isRequired,
+  filteredList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  isSuggestionListActive: PropTypes.bool.isRequired
+};
 
-export default connect(mapStateToProps, null)(SuggestedCityList);
+export default SuggestedCityList;

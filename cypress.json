@@ -1,5 +1,6 @@
 {
   "baseUrl": "http://localhost:3000",
+  "fileServerFolder": "src/e2e",
   "integrationFolder": "src/e2e/integration",
   "pluginsFile": "src/e2e/plugins/index.js",
   "supportFile": "src/e2e/support/index.js"
