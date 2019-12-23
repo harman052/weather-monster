@@ -3,12 +3,8 @@ import PropTypes from "prop-types";
 import { notifications } from "../../config";
 import "./styles.scss";
 
-export const SuggestedCityList = ({
-  addCity,
-  filteredList,
-  isSuggestionListActive
-}) => {
-  if (!isSuggestionListActive) {
+export const SuggestedCityList = ({ addCity, filteredList, isOpen }) => {
+  if (!isOpen) {
     return null;
   }
   if (filteredList.length > 0) {
@@ -33,7 +29,7 @@ export const SuggestedCityList = ({
 SuggestedCityList.propTypes = {
   addCity: PropTypes.func.isRequired,
   filteredList: PropTypes.arrayOf(PropTypes.object).isRequired,
-  isSuggestionListActive: PropTypes.bool.isRequired
+  isOpen: PropTypes.bool.isRequired
 };
 
 export default SuggestedCityList;

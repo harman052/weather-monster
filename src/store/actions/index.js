@@ -2,8 +2,8 @@ import {
   ADD_CITY,
   REMOVE_CITY,
   SHOW_SUGGESTION_LIST,
-  FETCH_DATA,
-  AN_ERROR_OCCURRED
+  REQUEST_IN_PROGRESS,
+  REQUEST_FAILURE
 } from "./actionTypes";
 
 export const addCity = cityDetails => ({
@@ -27,15 +27,15 @@ export const showSuggestionList = flag => ({
   }
 });
 
-export const fetchData = flag => ({
-  type: FETCH_DATA,
+export const requestInProgress = flag => ({
+  type: REQUEST_IN_PROGRESS,
   payload: {
     flag
   }
 });
 
-export const anErrorOccurred = flag => ({
-  type: AN_ERROR_OCCURRED,
+export const requestFailure = flag => ({
+  type: REQUEST_FAILURE,
   payload: {
     flag
   }

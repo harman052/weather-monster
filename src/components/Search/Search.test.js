@@ -24,9 +24,13 @@ const props = {
     }
   ],
   addCity: jest.fn(),
-  fetchData: jest.fn(),
+  requestInProgress: jest.fn(),
+  requestFailure: jest.fn(),
   showSuggestionList: jest.fn(),
-  isFetchingData: false,
+  requestStatus: {
+    inProgress: false,
+    failure: false
+  },
   isSuggestionListActive: false
 };
 

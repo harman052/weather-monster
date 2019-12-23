@@ -4,46 +4,43 @@ import { connect } from "react-redux";
 import {
   addCity,
   showSuggestionList,
-  fetchData,
-  anErrorOccurred
+  requestInProgress,
+  requestFailure
 } from "../../store/actions";
 import cityList from "../../cityList";
 import SuggestedCityList from "../SuggestedCityList";
-import getWheatherDetails from "../../endpoint";
+import getWeatherDetails from "../../endpoint";
 import { searchPlaceholderText, notifications } from "../../config";
-import { weatherEndpoint } from "../../endpointConfig";
+import { getWeatherEndpoint } from "../../endpointConfig";
 import "./styles.scss";
 
 export class Search extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      userInput: "",
-      filteredList: []
-    };
+    this.state = this.initialState;
   }
 
+  initialState = {
+    userInput: "",
+    filteredList: cityList
+  };
+
   onChange = e => {
+    const { showSuggestionList } = this.props;
     const userInput = e.currentTarget.value;
-    const filteredList = cityList.filter(item => {
-      return item.name.toLowerCase().includes(userInput.toLowerCase());
-    });
+    const filteredList = cityList.filter(item =>
+      item.name.toLowerCase().includes(userInput.toLowerCase())
+    );
     this.setState({
-      userInput: e.currentTarget.value,
+      userInput,
       filteredList
     });
-    this.props.showSuggestionList(true);
+    showSuggestionList(true);
   };
 
   onClick = event => {
     event.stopPropagation();
-    const { showSuggestionList } = this.props;
-    const filteredList = cityList.filter(item => {
-      return item.name.toLowerCase();
-    });
-    this.setState({ filteredList });
-    showSuggestionList(true);
+    this.props.showSuggestionList(true);
   };
 
   addNewCity = cityDetails => {
@@ -51,31 +48,30 @@ export class Search extends Component {
       activeCities,
       showSuggestionList,
       addCity,
-      fetchData,
-      anErrorOccurred
+      requestInProgress,
+      requestFailure
     } = this.props;
     showSuggestionList(false);
     if (activeCities.findIndex(city => city.id === cityDetails.id) > -1) {
       return;
     }
-    showSuggestionList(false);
-    this.setState({ userInput: "" });
-    fetchData(true);
-    const url = weatherEndpoint(cityDetails.id);
-    getWheatherDetails(url).then(response => {
+    this.setState(this.initialState);
+    requestInProgress(true);
+    const url = getWeatherEndpoint(cityDetails.id);
+    getWeatherDetails(url).then(response => {
       if (response.statusCode === 500) {
-        fetchData(false);
-        anErrorOccurred(true);
+        requestInProgress(false);
+        requestFailure(true);
         return;
       }
       addCity(response.data);
-      fetchData(false);
+      requestInProgress(false);
     });
   };
 
   render() {
     const { userInput, filteredList } = this.state;
-    const { isSuggestionListActive } = this.props;
+    const { isSuggestionListActive, requestStatus } = this.props;
     return (
       <section>
         <input
@@ -90,10 +86,10 @@ export class Search extends Component {
         <SuggestedCityList
           filteredList={filteredList}
           addCity={this.addNewCity}
-          isSuggestionListActive={isSuggestionListActive}
+          isOpen={isSuggestionListActive}
         ></SuggestedCityList>
         <div className="loading-data-indicator">
-          {this.props.isFetchingData ? notifications.loadingText : ""}
+          {requestStatus.inProgress ? notifications.loadingText : ""}
         </div>
       </section>
     );
@@ -101,30 +97,27 @@ export class Search extends Component {
 }
 
 Search.propTypes = {
-  isError: PropTypes.bool.isRequired,
   addCity: PropTypes.func.isRequired,
-  fetchData: PropTypes.func.isRequired,
-  isFetchingData: PropTypes.bool.isRequired,
-  anErrorOccurred: PropTypes.func.isRequired,
+  requestFailure: PropTypes.func.isRequired,
+  requestInProgress: PropTypes.func.isRequired,
   showSuggestionList: PropTypes.func.isRequired,
-  isSuggestionListActive: PropTypes.bool.isRequired
+  isSuggestionListActive: PropTypes.bool.isRequired,
+  requestStatus: PropTypes.objectOf(PropTypes.bool).isRequired
 };
 
 const mapStateToProps = ({
-  isError,
   activeCities,
-  isFetchingData,
+  requestStatus,
   isSuggestionListActive
 }) => ({
-  isError,
   activeCities,
-  isFetchingData,
+  requestStatus,
   isSuggestionListActive
 });
 const mapDispatchToProps = {
   addCity,
-  fetchData,
-  anErrorOccurred,
+  requestInProgress,
+  requestFailure,
   showSuggestionList
 };
 

@@ -8,16 +8,15 @@ import { notifications } from "../../config";
 import "./styles.scss";
 
 export const DisplayActiveCities = ({
-  isError,
+  requestStatus,
   activeCities,
-  removeCity,
-  isFetchingData
+  removeCity
 }) => {
   const { noCityAdded, error } = notifications;
   return (
     <section className="active-city-card-wrapper">
       <section className="active-city-list">
-        {isError ? (
+        {requestStatus.failure ? (
           <UIState {...error}></UIState>
         ) : activeCities && activeCities.length > 0 ? (
           activeCities
@@ -25,7 +24,7 @@ export const DisplayActiveCities = ({
             .map((city, index) => (
               <Card key={index} city={city} removeCity={removeCity}></Card>
             ))
-        ) : isFetchingData ? (
+        ) : requestStatus.inProgress ? (
           ""
         ) : (
           <UIState {...noCityAdded}></UIState>
@@ -36,16 +35,14 @@ export const DisplayActiveCities = ({
 };
 
 DisplayActiveCities.propTypes = {
-  isError: PropTypes.bool.isRequired,
   removeCity: PropTypes.func.isRequired,
-  isFetchingData: PropTypes.bool.isRequired,
-  activeCities: PropTypes.arrayOf(PropTypes.object).isRequired
+  activeCities: PropTypes.arrayOf(PropTypes.object).isRequired,
+  requestStatus: PropTypes.objectOf(PropTypes.bool).isRequired
 };
 
-const mapStateToProps = ({ isError, activeCities, isFetchingData }) => ({
-  isError,
+const mapStateToProps = ({ activeCities, requestStatus }) => ({
   activeCities,
-  isFetchingData
+  requestStatus
 });
 const mapDispatchToProps = { removeCity };
 

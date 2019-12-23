@@ -22,7 +22,10 @@ const props = {
       }
     }
   ],
-  isFetchingData: false,
+  requestStatus: {
+    inProgress: false,
+    failure: false
+  },
   removeCity: jest.fn()
 };
 
