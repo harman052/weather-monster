@@ -1,4 +1,5 @@
-const getWeatherDetails = async url => {
+// Common function to make GET requests
+const getData = async url => {
   const result = {
     data: {},
     statusCode: null
@@ -20,4 +21,4 @@ const getWeatherDetails = async url => {
   }
 };
 
-export default getWeatherDetails;
+export default getData;

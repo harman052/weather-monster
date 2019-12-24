@@ -10,9 +10,8 @@ import {
 import { cityActive } from "../../helpers";
 import cityList from "../../cityList";
 import SuggestedCityList from "../SuggestedCityList";
-import getWeatherDetails from "../../endpoint";
 import { searchPlaceholderText, notifications } from "../../config";
-import { getWeatherEndpoint } from "../../endpointConfig";
+import { getWeatherEndpoint } from "../../endpoint";
 import "./styles.scss";
 
 export class Search extends Component {
@@ -44,19 +43,17 @@ export class Search extends Component {
     this.props.showSuggestionList(true);
   };
 
-  requestWeatherDetails = cityId => {
+  requestWeatherDetails = async cityId => {
     const { addCity, requestInProgress, requestFailure } = this.props;
     requestInProgress(true);
-    const url = getWeatherEndpoint(cityId);
-    getWeatherDetails(url).then(response => {
-      if (response.statusCode === 500) {
-        requestInProgress(false);
-        requestFailure(true);
-        return;
-      }
-      addCity(response.data);
+    const response = await getWeatherEndpoint(cityId);
+    if (response.statusCode === 500) {
       requestInProgress(false);
-    });
+      requestFailure(true);
+      return;
+    }
+    addCity(response.data);
+    requestInProgress(false);
   };
 
   addNewCity = cityDetails => {
