@@ -74,3 +74,7 @@ For example, the default units of temperature are set to `metric` i.e. `Celsius`
 
 `export const units = constants.units.METRIC` <br/>with<br/>
 `export const units = constants.units.IMPERIAL`
+
+## Notes
+
+Since free version of [https://openweathermap.org/current](https://openweathermap.org/current) is not CORS enabled, therefore, a [proxy](https://cors-anywhere.herokuapp.com) is used in order to access it. Check `src/endpoint/index.js` for more details.
