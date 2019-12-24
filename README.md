@@ -51,14 +51,14 @@ Runs all the unit tests and launches the test runner in the interactive watch mo
 
 `Cypress` is configured in such a way that it could run integration tests on command line. When it finishes it generates `.mp4` video about how the app behaved during tests.
 
-Run `Cypress` in command line with:
+Before running `Cypress`, make sure the app is running. Run `Cypress` in command line with:
 
-`npm test:e2e:run`<br/>or<br/>
+`npm run test:e2e:run`<br/>or<br/>
 `yarn test:e2e:run`
 
 In order to view all the tests available and watch them running in browser, open `Cypress` GUI with:
 
-`npm test:e2e:open`<br/>or<br/>
+`npm run test:e2e:open`<br/>or<br/>
 `yarn test:e2e:open`
 
 ## Configuration (`src/config.js`)
