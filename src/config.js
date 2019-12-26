@@ -1,6 +1,6 @@
-import constants from "./constants";
+import { UNITS } from "./constants";
 
-export const units = constants.units.METRIC;
+export const units = UNITS.METRIC;
 export const header = "Weather Monster";
 export const searchPlaceholderText = "Enter city name here";
 export const notifications = {

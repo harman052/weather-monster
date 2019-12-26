@@ -4,8 +4,14 @@ import { connect } from "react-redux";
 import { removeCity } from "../../store/actions";
 import UIState from "../UIState";
 import Card from "../Card";
+import { sortCities } from "../../helpers";
 import { notifications } from "../../config";
 import "./styles.scss";
+
+const displayCities = (activeCities, removeCity) =>
+  sortCities(activeCities).map((city, index) => (
+    <Card key={index} city={city} removeCity={removeCity}></Card>
+  ));
 
 export const DisplayActiveCities = ({
   requestStatus,
@@ -19,11 +25,7 @@ export const DisplayActiveCities = ({
         {requestStatus.failure ? (
           <UIState {...error}></UIState>
         ) : activeCities && activeCities.length > 0 ? (
-          activeCities
-            .sort((cityA, cityB) => cityB.main.temp_max - cityA.main.temp_max)
-            .map((city, index) => (
-              <Card key={index} city={city} removeCity={removeCity}></Card>
-            ))
+          displayCities(activeCities, removeCity)
         ) : requestStatus.inProgress ? (
           ""
         ) : (

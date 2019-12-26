@@ -13,7 +13,7 @@ const props = {
 };
 
 describe("SuggestedCityList", () => {
-  it("should render SuggestedCityList", () => {
+  it("should render SuggestedCityList component", () => {
     const wrapper = shallow(<SuggestedCityList {...props} />);
     expect(wrapper.exists()).toBe(true);
   });
@@ -23,7 +23,7 @@ describe("SuggestedCityList", () => {
     expect(wrapper.isEmptyRender()).toEqual(true);
   });
 
-  it("should return list of suggested cities when filteredList has length > 0 and isOpen is set to true", () => {
+  it("should return list of suggested cities when filteredList is not empty and isOpen is set to true", () => {
     const localProps = {
       ...props,
       isOpen: true
@@ -34,7 +34,7 @@ describe("SuggestedCityList", () => {
     );
   });
 
-  it("should show text message when filteredList has no elements and isOpen is set to true", () => {
+  it("should show text message when filteredList is empty and isOpen is set to true", () => {
     const localProps = {
       ...props,
       filteredList: [],

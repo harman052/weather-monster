@@ -6,7 +6,7 @@ const initialState = {
 };
 
 const requestStatus = (state = initialState, action) => {
-  const { payload, type } = action;
+  const { type, payload } = action;
   switch (type) {
     case REQUEST_IN_PROGRESS:
       return { ...state, inProgress: payload.flag };

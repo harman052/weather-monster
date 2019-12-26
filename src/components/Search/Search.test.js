@@ -40,24 +40,24 @@ describe("Search", () => {
     expect(wrapper.exists()).toBe(true);
   });
 
-  it("should render 1 input element", () => {
+  it("should render 1 <input> element", () => {
     const wrapper = shallow(<Search {...props} />);
     expect(wrapper.find("input").length).toBe(1);
   });
 
-  it("should render correct placeholder text of input element", () => {
+  it("should render correct placeholder text of <input> element", () => {
     const wrapper = shallow(<Search {...props} />);
     const inputElement = wrapper.find("input").props().placeholder;
     expect(inputElement).toEqual(searchPlaceholderText);
   });
 
-  it("should render city suggestion list when input field clicked", () => {
+  it("should render city suggestion list when <input> field clicked", () => {
     const wrapper = shallow(<Search {...props} />);
     wrapper.find("input").simulate("click", { stopPropagation: () => {} });
     expect(wrapper.state().filteredList.length).toBeGreaterThan(0);
   });
 
-  it("should render city suggestion list with results matching to user input", () => {
+  it("should render city suggestion list with results matches user input", () => {
     const randomCityName = cityList[0].name;
     const cityNameSubString = randomCityName.substring(0, 3);
     const wrapper = shallow(<Search {...props} />);

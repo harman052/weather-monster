@@ -30,7 +30,7 @@ const props = {
 };
 
 describe("DisplayActiveCities", () => {
-  it("should render DisplayActiveCities", () => {
+  it("should render DisplayActiveCities component", () => {
     const wrapper = shallow(<DisplayActiveCities {...props} />);
     expect(wrapper.exists()).toBe(true);
   });

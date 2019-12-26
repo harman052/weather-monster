@@ -15,28 +15,28 @@ const props = {
 };
 
 describe("Card", () => {
-  it("should render App", () => {
+  it("should render Card component", () => {
     const wrapper = shallow(<Card {...props} />);
     expect(wrapper.exists()).toBe(true);
   });
 
-  it("should render 1 strong element", () => {
+  it("should render 1 <strong> element", () => {
     const wrapper = shallow(<Card {...props} />);
     expect(wrapper.find("strong").length).toBe(1);
   });
 
-  it("should render correct contents of strong tag", () => {
+  it("should render correct contents of <strong> element", () => {
     const wrapper = shallow(<Card {...props} />);
     const cardTitle = wrapper.find("strong").text();
     expect(cardTitle).toEqual(props.city.name);
   });
 
-  it("should render 2 span elements", () => {
+  it("should render 2 <span> elements", () => {
     const wrapper = shallow(<Card {...props} />);
     expect(wrapper.find("span").length).toBe(2);
   });
 
-  it("should render correct contents of span elements", () => {
+  it("should render correct contents of <span> elements", () => {
     const wrapper = shallow(<Card {...props} />);
     const min = wrapper.find(".min-temp-label").text();
     const max = wrapper.find(".max-temp-label").text();

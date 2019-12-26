@@ -42,10 +42,17 @@ This app is shipped with unit and integration tests. Unit tests are written usin
 
 ### Unit tests
 
-`npm test` <br/>or<br/>
+`npm run test` <br/>or<br/>
 `yarn test`
 
 Runs all the unit tests and launches the test runner in the interactive watch mode.
+
+#### Code coverage
+
+Generate unit test code coverage report with:
+
+`npm run test:coverage` <br/>or<br/>
+`yarn test:coverage`
 
 ### Integration tests
 

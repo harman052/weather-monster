@@ -37,4 +37,26 @@ describe("actions", () => {
     };
     expect(actions.showSuggestionList(flag)).toEqual(expectedAction);
   });
+
+  it("should create an action when request in progress", () => {
+    const flag = true;
+    const expectedAction = {
+      type: types.REQUEST_IN_PROGRESS,
+      payload: {
+        flag
+      }
+    };
+    expect(actions.requestInProgress(flag)).toEqual(expectedAction);
+  });
+
+  it("should create an action when request fails", () => {
+    const flag = true;
+    const expectedAction = {
+      type: types.REQUEST_FAILURE,
+      payload: {
+        flag
+      }
+    };
+    expect(actions.requestFailure(flag)).toEqual(expectedAction);
+  });
 });

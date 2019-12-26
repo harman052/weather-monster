@@ -1,8 +1,4 @@
-const constants = {
-  units: {
-    METRIC: "metric",
-    IMPERIAL: "imperial"
-  }
+export const UNITS = {
+  METRIC: "metric",
+  IMPERIAL: "imperial"
 };
-
-export default constants;

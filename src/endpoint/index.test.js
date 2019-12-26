@@ -17,6 +17,6 @@ describe("Search", () => {
 
   it("should not return city object when called with incorrect parameters", async () => {
     const response = await getWeatherEndpoint(100);
-    expect(response.data.message).toEqual("city not found");
+    expect(response.data.cod).toEqual("404");
   });
 });
