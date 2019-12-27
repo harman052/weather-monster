@@ -1,6 +1,5 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { notifications } from "../../config";
 import { SuggestedCityList } from "./SuggestedCityList";
 
 const props = {
@@ -32,16 +31,6 @@ describe("SuggestedCityList", () => {
     expect(wrapper.find(".suggested-city-list-item").length).toEqual(
       localProps.filteredList.length
     );
-  });
-
-  it("should show text message when filteredList is empty and isOpen is set to true", () => {
-    const localProps = {
-      ...props,
-      filteredList: [],
-      isOpen: true
-    };
-    const wrapper = shallow(<SuggestedCityList {...localProps} />);
-    expect(wrapper.find("p").text()).toEqual(notifications.noMatchesFound);
   });
 
   it("should call addCity when an item from suggested city list is clicked", () => {

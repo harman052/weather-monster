@@ -9,6 +9,7 @@ import {
 } from "../../store/actions";
 import { cityActive } from "../../helpers";
 import cityList from "../../cityList";
+import DisplayMessage from "../DisplayMessage";
 import SuggestedCityList from "../SuggestedCityList";
 import { searchPlaceholderText, notifications } from "../../config";
 import { getWeatherEndpoint } from "../../endpoint";
@@ -81,15 +82,23 @@ export class Search extends Component {
           onClick={event => this.openDropdown(event)}
           onFocus={event => this.openDropdown(event)}
         />
-        <SuggestedCityList
-          filteredList={filteredList}
-          addCity={this.addNewCity}
-          isOpen={isSuggestionListActive}
-          activeCities={activeCities}
-        ></SuggestedCityList>
-        <div className="loading-data-indicator">
-          {requestStatus.inProgress ? notifications.loadingText : ""}
-        </div>
+        {filteredList && filteredList.length > 0 ? (
+          <SuggestedCityList
+            filteredList={filteredList}
+            addCity={this.addNewCity}
+            isOpen={isSuggestionListActive}
+            activeCities={activeCities}
+          ></SuggestedCityList>
+        ) : (
+          <DisplayMessage
+            condition={true}
+            message={notifications.noMatchesFound}
+          ></DisplayMessage>
+        )}
+        <DisplayMessage
+          condition={requestStatus.inProgress}
+          message={notifications.loadingText}
+        ></DisplayMessage>
       </section>
     );
   }

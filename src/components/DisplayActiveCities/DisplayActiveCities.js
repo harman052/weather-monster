@@ -8,28 +8,32 @@ import { sortCities } from "../../helpers";
 import { notifications } from "../../config";
 import "./styles.scss";
 
-const displayCities = (activeCities, removeCity) =>
-  sortCities(activeCities).map((city, index) => (
-    <Card key={index} city={city} removeCity={removeCity}></Card>
-  ));
+const renderCities = (activeCities, removeCity, requestStatus) => {
+  const { noCityAdded } = notifications;
+  return activeCities && activeCities.length > 0 ? (
+    sortCities(activeCities).map((city, index) => (
+      <Card key={index} city={city} removeCity={removeCity}></Card>
+    ))
+  ) : requestStatus.inProgress ? (
+    ""
+  ) : (
+    <UIState {...noCityAdded}></UIState>
+  );
+};
 
 export const DisplayActiveCities = ({
   requestStatus,
   activeCities,
   removeCity
 }) => {
-  const { noCityAdded, error } = notifications;
+  const { error } = notifications;
   return (
     <section className="active-city-card-wrapper">
       <section className="active-city-list">
         {requestStatus.failure ? (
           <UIState {...error}></UIState>
-        ) : activeCities && activeCities.length > 0 ? (
-          displayCities(activeCities, removeCity)
-        ) : requestStatus.inProgress ? (
-          ""
         ) : (
-          <UIState {...noCityAdded}></UIState>
+          renderCities(activeCities, removeCity, requestStatus)
         )}
       </section>
     </section>

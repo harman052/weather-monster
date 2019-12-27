@@ -9,6 +9,3 @@ export const sortCities = activeCities =>
   activeCities.sort(
     (cityA, cityB) => cityB.main.temp_max - cityA.main.temp_max
   );
-// .map((city, index) => (
-//   <Card key={index} city={city} removeCity={removeCity}></Card>
-// ));
