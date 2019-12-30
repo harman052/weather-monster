@@ -1,5 +1,5 @@
 // Common function to make GET requests
-const getData = async url => {
+export const get = async url => {
   const result = {
     data: {},
     statusCode: null
@@ -20,5 +20,3 @@ const getData = async url => {
     return result;
   }
 };
-
-export default getData;
