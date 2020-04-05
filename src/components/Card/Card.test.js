@@ -22,7 +22,7 @@ describe("Card", () => {
 
   it("should render 1 <strong> element", () => {
     const wrapper = shallow(<Card {...props} />);
-    expect(wrapper.find("strong").length).toBe(1);
+    expect(wrapper.find("strong").length).toBe(0);
   });
 
   it("should render correct contents of <strong> element", () => {
