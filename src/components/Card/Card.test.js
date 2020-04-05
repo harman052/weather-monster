@@ -8,10 +8,10 @@ const props = {
     id: 123,
     main: {
       temp_min: 4,
-      temp_max: 20
-    }
+      temp_max: 20,
+    },
   },
-  removeCity: jest.fn()
+  removeCity: jest.fn(),
 };
 
 describe("Card", () => {

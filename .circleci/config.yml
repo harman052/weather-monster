@@ -13,6 +13,7 @@ jobs:
             - run: npm install
             - run: npm test
       - slack/status:
+          fail_only: true
           only_for_branches: master
 workflows:
   build-and-test:
