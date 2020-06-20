@@ -1,4 +1,4 @@
-# Weather Monster
+# Weather Monster - [Demo](https://harman052.github.io/weather-monster/)
 
 Search and select cities to see their min and max temperatures.
 
