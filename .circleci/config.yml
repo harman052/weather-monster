@@ -11,10 +11,16 @@ jobs:
       - node/with-cache:
           steps:
             - run: npm install
-            - run: npm test
-      - slack/status:
-          fail_only: true
-          only_for_branches: master
+            - run:
+                name: "Run Jest and Collect Coverage Reports"
+                command: jest --collectCoverage=true
+            - store_artifacts:
+                path: coverage
+
+      #       - run: npm test
+      # - slack/status:
+      #     fail_only: true
+      #     only_for_branches: master
 workflows:
   build-and-test:
     jobs:
