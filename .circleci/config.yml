@@ -13,9 +13,9 @@ jobs:
             - run: npm install
             - run:
                 name: "Run Jest and Collect Coverage Reports"
-                command: npm test --collectCoverage=true
+                command: jest --coverage --runInBand
             - store_artifacts:
-                path: coverage
+                path: /home/circleci/project/coverage
 
       #       - run: npm test
       # - slack/status:
