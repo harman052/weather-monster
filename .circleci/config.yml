@@ -27,7 +27,7 @@ aliases:
   - &restore_cache_npm_packages
     name: Restore npm packages
     keys:
-      - node_modules-{{ checksum "yarn.lock" }}
+      - node_modules-{{ checksum "package-lock.json" }}
 
   - &save_cache_build_artifacts
     name: Save build artifacts

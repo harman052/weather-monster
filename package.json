@@ -19,6 +19,7 @@
     "build": "react-scripts build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test",
+    "test:ci": "jest --coverage --runInBand",
     "test:coverage": "react-scripts test --coverage",
     "eject": "react-scripts eject",
     "test:e2e:open": "cypress open --config fileServerFolder=src/e2e",
