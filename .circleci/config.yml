@@ -5,24 +5,102 @@ defaults: &defaults
     - image: circleci/node:10.19.0
   environment:
     NODE_PATH: src/
-  working_directory: ~/repo-
+  working_directory: ~/repo
+
+aliases:
+  - &save_cache_source
+    name: Save source code
+    key: source-{{ .Branch }}-{{ .Revision }}
+    paths:
+      - "~/repo"
+
+  - &restore_cache_source
+    name: Restore source code
+    key: source-{{ .Branch }}-{{ .Revision }}
+
+  - &save_cache_npm_packages
+    name: Save npm packages
+    key: node_modules-{{ checksum "yarn.lock" }}
+    paths:
+      - "~/repo/node_modules"
+
+  - &restore_cache_npm_packages
+    name: Restore npm packages
+    keys:
+      - node_modules-{{ checksum "yarn.lock" }}
+
+  - &save_cache_build_artifacts
+    name: Save build artifacts
+    key: build-{{ .Branch }}-{{ .Revision }}
+    paths:
+      - "~/repo/dist"
+
+  - &save_cache_docs_artifacts
+    name: Save docs artifacts
+    key: docs-{{ .Branch }}-{{ .Revision }}
+    paths:
+      - "~/repo/doc"
 
 jobs:
-  build-and-test:
+  checkout_code:
     <<: *defaults
     steps:
       - checkout
-      - run: npm install
+      - save_cache: *save_cache_source
+
+  install_dependencies:
+    <<: *defaults
+    steps:
+      - restore_cache: *restore_cache_source
+      - restore_cache: *restore_cache_npm_packages
       - run:
-          name: "Run Jest and Collect Coverage Reports"
-          command: jest --coverage --runInBand
-      # - store_artifacts:
-      #     path: /home/circleci/project/coverage
-      #       - run: npm test
-      # - slack/status:
-      #     fail_only: true
-      #     only_for_branches: master
+          name: Install dependencies
+          command: yarn install
+      - save_cache: *save_cache_npm_packages
+
+  test:
+    <<: *defaults
+    steps:
+      - restore_cache: *restore_cache_source
+      - restore_cache: *restore_cache_npm_packages
+      - run:
+          name: Unit test & test coverage
+          command: yarn test:ci
+
+  build:
+    <<: *defaults
+    steps:
+      - restore_cache: *restore_cache_source
+      - restore_cache: *restore_cache_npm_packages
+      - run:
+          name: Build
+          command: yarn build
+      - save_cache: *save_cache_build_artifacts
+  # build-and-test:
+  #   <<: *defaults
+  #   steps:
+  #       - checkout
+  #       - save_cache: *save_cache_source
+  #     - run: npm install
+  #     - run:
+  #         name: "Run Jest and Collect Coverage Reports"
+  #         command: jest --coverage --runInBand
+  #     # - store_artifacts:
+  #     #     path: /home/circleci/project/coverage
+  #     #       - run: npm test
+  #     # - slack/status:
+  #     #     fail_only: true
+  #     #     only_for_branches: master
 workflows:
   build-and-test:
     jobs:
-      - build-and-test
+      - checkout_code
+      - install_dependencies:
+          requires:
+            - checkout_code
+      - test:
+          requires:
+            - install_dependencies
+      - build:
+          requires:
+            - test
